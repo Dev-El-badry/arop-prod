@@ -1,0 +1,25 @@
+<mat-card dir="rtl">
+    <div class="msg_for_client">
+        <h2 style="margin-bottom: 0;">{{ 'thankyou.title1' | translate }} {{ fullName }}</h2>
+    <h2 style="margin-top: 0;">{{ 'thankyou.title2' | translate }} {{ numDoc }}</h2>
+
+        <p style="font-weight: bold; line-height: 2; width: 450px;    text-align: justify;">
+            {{ 'thankyou.par1' | translate }}
+        </p>
+
+        <br>
+
+        <h4>{{ 'thankyou.msg1' | translate }}</h4>
+        <h4>{{ 'thankyou.msg2' | translate }}</h4>
+        <h4>{{ 'thankyou.msg3' | translate }}</h4>
+
+
+    </div>
+
+    <div style="text-align: center; margin: 0 auto;">
+        <button mat-raised-button color="primary" (click)="back_to_home()">
+            <mat-icon>home</mat-icon>
+            {{ 'traveler.back_home'|translate }}</button>
+
+    </div>
+</mat-card>

@@ -1,0 +1,42 @@
+
+
+<div [formGroup]="form">
+    <div formArrayName="groups">
+        <span *ngFor="let count of numGroup.controls; let i = index" class="family">
+            <div fxLayout="row" fxLayoutGap="1%" id="field-{{i}}" [formGroupName]="i">
+                <div class="left-field" fxFlex="46%" >
+                    <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{'medical.numOfGroups'|translate}}</mat-label>
+                    <input type="text" matInput  formControlName="num"  required>
+    
+                        <!-- <input type="number" matInput placeholder="number of group" ngModel name="numOfGroup" #numOfGroup="ngModel" required> -->
+    
+                    </mat-form-field>
+                </div>
+                <div class="middle-field" fxFlex="46%">
+                    <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>{{ 'medical.age' | translate }}</mat-label>
+                        <mat-select formControlName="age">
+                            <mat-option *ngFor="let size of groupSize" [value]="size.value">
+                                {{size.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+    
+                <div *ngIf="i !== 0" class="right-field" fxFlex="3%" fxLayoutAlign="center center"
+                    (click)="deleteElement(i)">
+    
+                    <mat-icon style="  
+                    line-height: 10px;
+                    
+                    border-radius: 5px;
+                    background: salmon;
+                    cursor: pointer;
+                ">minimize</mat-icon>
+                </div>
+            </div>
+        </span>
+
+    </div>
+</div>

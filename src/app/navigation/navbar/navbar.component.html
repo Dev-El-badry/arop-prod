@@ -1,0 +1,45 @@
+<section class='navbar-header' style="height: 70px;position: relative;box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+    <mat-toolbar class=" navbar-navigation container">
+
+        <div class="logo" *ngIf="lang == 'en'">
+            <a routerLink="/traveler-insurance"><img fxFlex="300px" style="height:65px;" class="img-responsive" src="assets/images/logo.png"></a>
+        </div>
+
+
+
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.lt-lg *ngIf="lang == 'en'">
+            <ul fxLayout class="navigation-links" dir="auto">
+
+
+                <li class="nav-item"><a class="link" routerLinkActive="active-link" routerLink="/traveler-insurance" ><span class="mdi mdi-airplane-takeoff "></span>  {{'navbar.nav1' | translate}}</a></li>
+                <li onclick="goToMotor()" class="nav-item"><a class="link" routerLink="/car-insurance" routerLinkActive="active-link"><span class="mdi mdi-car "></span> {{'navbar.nav2' | translate}}</a></li>
+                <li onclick="goToMedical()" class="nav-item"><a class="link" routerLink="/medical-insurance" routerLinkActive="active-link"><span class="mdi mdi-medical-bag "></span> {{'navbar.nav3' | translate}}</a></li>
+                <li onclick="goToPersonalAccident()" class="nav-item"><a class="link" routerLink="/personal-accident" routerLinkActive="active-link"><span class="mdi mdi-wheelchair-accessibility "></span> {{'navbar.nav4' | translate}}</a></li>
+
+            </ul>
+        </div>
+        <div fxFlex fxLayout fxHide.lt-lg *ngIf="lang == 'ar'">
+            <ul fxLayout class="navigation-links" dir="auto">
+
+                <li class="nav-item"><a class="link" routerLink="/traveler-insurance" routerLinkActive="active-link" ><span class="mdi mdi-airplane-takeoff "></span>  {{'navbar.nav1' | translate}}</a></li>
+                <li class="nav-item"><a class="link" routerLink="/car-insurance" routerLinkActive="active-link"><span class="mdi mdi-car "></span> {{'navbar.nav2' | translate}}</a></li>
+                <li class="nav-item"><a class="link" routerLink="/medical-insurance" routerLinkActive="active-link"><span class="mdi mdi-medical-bag "></span> {{'navbar.nav3' | translate}}</a></li>
+                <li class="nav-item"><a class="link" routerLink="/personal-accident" routerLinkActive="active-link"><span class="mdi mdi-wheelchair-accessibility "></span> {{'navbar.nav4' | translate}}</a></li>
+            </ul>
+        </div>
+        <div class="logo" *ngIf="lang == 'ar'">
+            <a routerLink="/traveler-insurance"><img fxFlex="300px" style="height:65px;" class="img-responsive" src="assets/images/ar_logo.png"></a>
+        </div>
+
+        <div style="clear: both"></div>
+
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.gt-md>
+            <button mat-icon-button (click)="onToggleSideNav()">
+        <mat-icon class="icon-menu">menu</mat-icon>
+      </button>
+        </div>
+
+
+    </mat-toolbar>
+
+</section>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Arope</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.materialdesignicons.com/4.7.95/css/materialdesignicons.min.css" rel="stylesheet">
+
+    <script id="myscript" src="https://qnbalahli.test.gateway.mastercard.com/checkout/version/43/checkout.js" 
+    data-cancel="cancelCallback" 
+    data-error="errorCallback"
+   
+    >
+    </script>
+
+    <script src="https://atfawry.fawrystaging.com/ECommercePlugin/scripts/FawryPay.js"></script>
+<<<<<<< HEAD
+
+=======
+    <!-- <script id="myscript" src="https://test-gateway.mastercard.com/checkout/version/39/checkout.js" 
+    data-cancel="cancelCallback" 
+    data-error="errorCallback"
+   
+    >
+    </script> -->
+>>>>>>> 90212ec889bdebe8e79068af0cf6881d3546c91c
+    <script>
+        function cancelCallback() {
+            console.log('Payment cancelled');
+        }
+
+        function errorCallback(error) {
+            alert('The Operation couldn\'t be complated');
+            console.log(JSON.stringify(error));
+        }
+
+        function timeoutCallback() {
+            alert('Network Error : No Data Received.');
+        }
+    </script>
+
+    <link rel="stylesheet" href="http://207.154.195.214:8070/im_livechat/external_lib.css"/>
+
+    <!-- <script src="https://qnbalahli.test.gateway.mastercard.com/checkout/version/49/checkout.js" data-error="errorCallback" data-cancel="cancelCallback"> -->
+    <!-- </script> -->
+
+</head>
+
+<body>
+    <app-root></app-root>
+    <script type="text/javascript" src="http://207.154.195.214:8070/im_livechat/external_lib.js"></script>
+    <script type="text/javascript" src="http://207.154.195.214:8070/im_livechat/loader/1"></script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+mat-form-field {
+    width: 100%
+}
+
+.mat-form-field-wrapper {
+    padding: 0;
+}
+
+.button-quote {
+    background-color: #e77a11;
+    color: #fff;
+    font-family: Tajawal, Roboto !important;
+    font-size: 20px;
+    width: 204px;
+    height: 42px;
+    line-height: 42px;
+}
+
+.additional-travelers {
+    background-color: #f5f5f5;
+    padding: 14px;
+    margin-bottom: 12px
+}
+
+.additional-travelers .title {
+    font-weight: normal;
+}
+
+mat-grid-list.mat-grid-list.ng-star-inserted {
+    height: calc(70px) !important;
+}
+
+mat-form-field {
+    position: relative;
+}
+
+.custom-error {
+    position: absolute;
+    top: 43px;
+    right: -11px;
+    font-size: 13px;
+    color: red;
+}
+
+.typeSection {
+    padding: 10px;
+}
+
+.typeSection:nth-child(even) {
+    background: #eee;
+    border-radius: 10px;
+}
+
+mat-radio-button {
+    margin-right: 25px;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,91 @@
+<div class=" img-background">
+    <main class="container-welcome" fxFlex fxLayout fxLayoutAlign="center center">
+        <section class="get_qoute" *ngIf="isOn">
+
+            <form #f="ngForm" (ngSubmit)="submitForm(f)">
+                <mat-card fxFlex="700px" fxFlex.xs="100%" class='overlay'>
+                    <mat-card-title fxLayoutAlign="flex-start">
+
+                        {{ 'personal.title' | translate }}</mat-card-title>
+                    <div *ngIf="!isShow" fxLayoutAlign="center center">
+                        <mat-spinner [diameter]="80"></mat-spinner>
+                    </div>
+                    <mat-card-content *ngIf="isShow">
+                        <mat-grid-list [cols]="breakpoint" rowHeight="75px" (window:resize)="onResize($event)" gutterSize="10px">
+                            <mat-grid-tile>
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label> {{ 'traveler.dob' | translate }}</mat-label>
+                                    <input type="text" matInput [matDatepicker]="agePicker" #inputAge placeholder="Date Of Birth" [max]="maxDate" [min]="minDate" ngModel name="indAge" #indAge="ngModel" required>
+                                    <mat-datepicker-toggle matSuffix [for]="agePicker"></mat-datepicker-toggle>
+                                    <mat-datepicker startView="multi-year" (closed)="inputAge.blur()" #agePicker></mat-datepicker>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label>{{ 'personal.job' | translate }}</mat-label>
+                                    <mat-select *ngIf="lang == 'en'"  name="job" ngModel #jobInput="ngModel" required>
+                                        <mat-option *ngFor="let job of jobs" [value]="job.id">
+                                            {{job.job_id}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-select *ngIf="lang == 'ar'"  name="job" ngModel #jobInput="ngModel" required>
+                                        <mat-option *ngFor="let job of jobs" [value]="job.id">
+                                            {{job.ar_job_id}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label>{{ 'personal.sum' | translate }}</mat-label>
+                                    <input matInput type="number" name="rate" ngModel #id="ngModel" required min="0">
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <div class="clearfix"></div>
+
+
+                        </mat-grid-list>
+                        <div [ngClass]="{'radioFloat': this.lang =='en', 'ar_radioFloat': this.lang == 'ar'}">
+                            <h3>{{ 'personal.covers' | translate }}</h3>
+                            <div *ngIf="!isShow" fxLayoutAlign="center center">
+                                <mat-spinner [diameter]="40"></mat-spinner>
+                            </div>
+                            <div *ngIf="isShow">
+                                <mat-radio-group *ngFor="let cover of basicCovers" required aria-label="Select an option" color="primary" name="type" ngModel="type" #typeInput="ngModel" (change)="showField($event)">
+                                    <mat-radio-button style="margin-bottom:4px;" checked value="{{cover.id}}">{{cover.cover_id}}</mat-radio-button>
+                                    <br>
+                                </mat-radio-group>
+
+                            </div>
+
+                        </div>
+                        <div [ngClass]="{'radioMargin': this.lang =='en', 'ar_radioMargin': this.lang == 'ar'}">
+                            <h3>{{ 'personal.covers_optional' | translate }}</h3>
+                            <div *ngIf="!isShow" fxLayoutAlign="center center">
+                                <mat-spinner [diameter]="40"></mat-spinner>
+                            </div>
+                            <ng-container *ngIf="isShow">
+                                <div *ngFor="let cover of optionalCovers">
+                                    <mat-checkbox color="primary" ngModel #checkbox name="death" [checked]="cover.taken" (change)="cover.taken = !cover.taken">{{cover.cover_id}}</mat-checkbox>
+                                    <!-- <br> -->
+                                </div>
+                            </ng-container>
+                        </div>
+                        
+                        <div>
+                            <a style="margin: 20px 0; display: block;font-weight: 500;" [routerLink]="[ '/','get_ticket', {page: 'find-yourjob'}]">{{ 'personal.question' | translate }}</a>
+                        </div>
+                        <button *ngIf="!isLoading" class='button-quote' mat-button color="primary" type="submit" [disabled]="f.invalid">{{ 'medical.get_quote' | translate }}</button>
+                        <div *ngIf="isLoading" fxLayoutAlign="center center">
+                            <mat-spinner [diameter]="40"></mat-spinner>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+
+
+
+        </section>
+        <app-ticket-form *ngIf="!isOn"></app-ticket-form>
+    </main>
+</div>

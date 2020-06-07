@@ -1,0 +1,17 @@
+<mat-drawer-container [hasBackdrop]="true" [dir]="currentDir">
+
+    <mat-drawer #drawer [position]="position" mode="push" #sidenav navigation="role" class="app-sidenav">
+        <app-list-nav (closeSideNav)="drawer.close()"></app-list-nav>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-header></app-header>
+
+        <app-navbar (toggleSideNav)="drawer.toggle()"></app-navbar>
+        <main class="img-background" [dir]="currentDir" style="overflow: hidden;">
+
+            <router-outlet></router-outlet>
+        </main>
+
+
+    </mat-drawer-content>
+</mat-drawer-container>

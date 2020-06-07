@@ -1,0 +1,23 @@
+<section class='price-card'>
+    <mat-card style="background-color: #013781;">
+        <form #fPriceCard="ngForm" (ngSubmit)="submitFormPriceCard(fPriceCard)">
+            <div class="total-quote">
+                <h4 class='title'>{{ 'results_info.total_title' | translate }}</h4>
+
+                <!-- form input hiddens -->
+                <input type="hidden" name="cardNumber" [(ngModel)]="formList.cardNumber" #cardNumber="ngModel" minlength="16" required />
+                <input type="hidden" name="expirationDate" [(ngModel)]="formList.expirationDate" #expirationDate="ngModel" required />
+                <input type="hidden" name="cvCode" [(ngModel)]="formList.cvCode" #cvCode="ngModel" minlength="4" required />
+                <!-- end form input hiddens -->
+                <h3 class="price">{{ 'results_info.currency' | translate }} {{ totalPrice }}</h3>
+                <button *ngIf="!isLoading && isDisabled" type="submit" mat-button class="button-quote" [disabled]="isDisabled"> {{ !isDisabled ?  '': 'results_info.paid' | translate }} </button>
+                <button *ngIf="!isLoading && !isDisabled" type="submit" mat-button class="button-quote" [disabled]="fPriceCard.invalid">{{ isDisabled ? '' : 'results_info.pay' | translate  }}</button>
+                <div *ngIf="isLoading" fxLayoutAlign="center center">
+                    <mat-spinner></mat-spinner>
+                </div>
+
+            </div>
+        </form>
+
+    </mat-card>
+</section>

@@ -1,0 +1,26 @@
+.stepper-reqestration {
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+    background-color: #073e89;
+    color: white;
+}
+
+.form-field:not(:last-child) {
+    margin-right: 20px;
+}
+
+.form-field {
+    width: 236px;
+}
+
+.clearfix {
+    clear: both;
+}

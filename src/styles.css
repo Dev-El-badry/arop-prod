@@ -1,0 +1,254 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Tajawal:400,500,700&display=swap&subset=arabic'); */
+
+@font-face {
+    font-family: Tajawal;
+    src: url('assets/fonts/Circle-Light.otf') format("opentype");
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Tajawal, Roboto;
+}
+
+[dir="rtl"] mat-label,
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] p,
+[dir="rtl"] a,
+[dir="rtl"] ul>li,
+[dir="rtl"] label,
+[dir="rtl"] mat-label,
+[dir="rtl"] mat-card-title,
+[dir="rtl"] mat-card-content,
+[dir="rtl"] mat-button,
+[dir="rtl"] button,
+[dir="rtl"] div,
+[dir="rtl"] span,
+[dir="rtl"] mat-select {
+    font-family: Tajawal !important;
+}
+
+[dir="ltr"] mat-label,
+[dir="ltr"] h1,
+[dir="ltr"] h2,
+[dir="ltr"] h3,
+[dir="ltr"] h4,
+[dir="ltr"] h5,
+[dir="ltr"] h6,
+[dir="ltr"] p,
+[dir="ltr"] a,
+[dir="ltr"] ul>li,
+[dir="ltr"] label,
+[dir="ltr"] mat-label,
+[dir="ltr"] mat-card-title,
+[dir="ltr"] mat-card-content,
+[dir="ltr"] mat-button,
+[dir="ltr"] button div,
+[dir="ltr"] span,
+[dir="ltr"] mat-select {
+    font-family: Arial !important;
+}
+
+.mat-step-icon-content>span {
+    line-height: 55px;
+}
+
+.mat-button.mat-primary[disabled],
+.mat-button.mat-accent[disabled],
+.mat-button.mat-warn[disabled],
+.mat-button[disabled][disabled],
+.mat-icon-button.mat-primary[disabled],
+.mat-icon-button.mat-accent[disabled],
+.mat-icon-button.mat-warn[disabled],
+.mat-icon-button[disabled][disabled],
+.mat-stroked-button.mat-primary[disabled],
+.mat-stroked-button.mat-accent[disabled],
+.mat-stroked-button.mat-warn[disabled],
+.mat-stroked-button[disabled][disabled] {
+    color: #fff !important;
+    background-color: #999 !important;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle,
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+.mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: #073e89 !important;
+}
+
+.mat-button.mat-primary[disabled],
+.mat-button.mat-accent[disabled],
+.mat-button.mat-warn[disabled],
+.mat-button[disabled][disabled],
+.mat-icon-button.mat-primary[disabled],
+.mat-icon-button.mat-accent[disabled],
+.mat-icon-button.mat-warn[disabled],
+.mat-icon-button[disabled][disabled],
+.mat-stroked-button.mat-primary[disabled],
+.mat-stroked-button.mat-accent[disabled],
+.mat-stroked-button.mat-warn[disabled],
+.mat-stroked-button[disabled][disabled] {
+    color: #073e89 !important;
+    background-color: #e4eaf2 !important;
+}
+
+.md-dialog-container {
+    background-color: #000 !important;
+    width: 250px !important;
+    height: 250px !important
+}
+
+.container {
+    margin: auto 40px !important;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    width: auto !important;
+}
+
+.main-color {
+    background-color: #073E89;
+    color: #E4EAF2;
+}
+
+.special-title {
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 1000px) {
+    .container {
+        margin: auto 0 !important;
+    }
+    .mat-horizontal-content-container {
+        padding: 0 !important;
+    }
+    .price-card {
+        margin: 25px auto !important;
+        width: 95%;
+    }
+    .traveler-detials {
+        margin-left: 20px;
+        width: 95%;
+    }
+    div#cdk-overlay-0 {
+        max-width: 95% !important;
+    }
+}
+
+.price-card .mat-progress-spinner circle,
+.price-card .mat-spinner circle {
+    stroke: #fff !important;
+}
+
+.container-welcome {
+    margin: auto 40px !important;
+}
+
+@media only screen and (max-width: 1000px) {
+    .container-welcome {
+        margin: auto 10px !important;
+    }
+}
+
+.medical-quote .mat-form-field-wrapper {
+    padding: 0px !important;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.full-width-field {
+    width: 100%;
+}
+
+.half-width-field {
+    width: 50%;
+}
+
+.form-field:not(:last-child) {
+    margin-right: 20px;
+}
+
+.form-field {
+    width: 100%;
+}
+
+form-field:not(:last-child) {
+    margin-right: 20px;
+}
+
+.form-field {
+    width: 100%;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: #073e89 !important;
+}
+
+.mat-checkbox-checked .mat-checkbox-background,
+.mat-checkbox-indeterminate .mat-checkbox-background {
+    background-color: #073e89 !important;
+}
+
+.mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+    background-color: #073e89 !important;
+}
+
+@media screen and (max-width: 600px) {
+    .half-width-field {
+        width: 100%;
+    }
+} 
+
+.info-form .button-quote span.mat-button-wrapper {
+    margin: auto -7px;
+}
+
+
+/*notes*/
+
+ul.notes {
+    list-style-type: square;
+}
+
+ul.notes>li::marker {
+    color: #073e89;
+}
+
+ul.notes>li {
+    margin-bottom: 11px;
+    font-family: Arial;
+}
+
+/* Tabs */
+
+div#mat-tab-label-0-1,div#mat-tab-label-0-0 {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+mat-tab-header.mat-tab-header{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* mat-list-item.mat-list-item {
+        height: 66px;
+        text-align: center;
+} */

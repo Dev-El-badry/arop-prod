@@ -1,0 +1,51 @@
+mat-form-field {
+    width: 100%
+}
+
+.mat-form-field-wrapper {
+    padding: 0;
+}
+
+.button-quote {
+    background-color: #e77a11;
+    color: #fff;
+    font-family: Tajawal, Roboto !important;
+    font-size: 20px;
+    width: 204px;
+    height: 42px;
+    line-height: 42px;
+}
+
+.additional-travelers {
+    background-color: #f5f5f5;
+    padding: 14px;
+    margin-bottom: 12px
+}
+
+.additional-travelers .title {
+    font-weight: normal;
+}
+
+mat-grid-list.mat-grid-list.ng-star-inserted {
+    height: calc(70px) !important;
+}
+
+.custom-error {
+    position: absolute;
+    top: 43px;
+    left: -11px;
+    font-size: 13px;
+    color: red;
+}
+.custom-error-rate{
+    font-size: 18px;
+    color: red;
+}
+
+mat-radio-group {
+    width: 100%;
+}
+
+mat-radio-group mat-radio-button:first-child {
+    margin: auto 10px;
+}

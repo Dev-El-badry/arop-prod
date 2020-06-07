@@ -1,0 +1,12 @@
+.navigation-links {
+    list-style-type: none;
+}
+
+section.wrapper-header>* {
+    background-color: #073E89 !important;
+    color: white !important;
+}
+
+.link-target:hover {
+    color: #fff;
+}

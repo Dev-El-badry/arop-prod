@@ -1,0 +1,52 @@
+<form #f="ngForm" (ngSubmit)="submitForm(f)">
+    <mat-card fxFlex="100%" fxFlex.xs="100%" class='overlay'>
+        <mat-card-title fxLayoutAlign="flex-start">
+            {{ 'results_info.title2' | translate }}</mat-card-title>
+        <mat-card-content>
+            <mat-grid-list [cols]="breakpoint" rowHeight="75px" (window:resize)="onResize($event)" gutterSize="10px">
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class='form-field'>
+                        <mat-label>{{ 'group.name' | translate }}</mat-label>
+                        <input matInput type="text" name="name" ngModel #name="ngModel" required>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class='form-field'>
+                        <mat-label> {{ 'results_info.email' | translate }}</mat-label>
+                        <input matInput placeholder="Email" name="emailAddress" ngModel #emailAddress="ngModel" required email>
+                        <mat-error *ngIf="emailAddress.hasError('required')">{{ 'results_info.email_alert' | translate }} <strong>{{ 'results_info.required' | translate }}</strong></mat-error>
+                        <!-- <p *ngIf="mail === false" class="custom-error">Please enter a valid email address</p> -->
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <div class="form-group">
+                        <select name="prefixNum" id="selectOptions" #prefixNum="ngModel" ngModel="02" required>
+                        <option value="02" checked>02</option>
+                        <option value="011">011</option>
+                        <option value="010">010</option>
+                        <option value="015">015</option>
+
+                    </select>
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label id="phoneLabel">{{ 'results_info.phone' | translate }}</mat-label>
+                            <input matInput type="tel" id="phoneInput" name="phoneNumber" ngModel #phoneNumber="ngModel" maxlength="90" minlength="5" required>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+
+
+
+                <div class="clearfix"></div>
+
+
+            </mat-grid-list>
+
+            <!-- <mat-checkbox ngModel #checkbox="ngModel" name="terms" color="primary" required> {{ 'results_info.alert2' | translate }} <a href="http://207.154.195.214/TravelWording.pdf" download target="_blank">{{ 'results_info.terms' | translate }}</a></mat-checkbox> -->
+            <!-- <br> <br> -->
+            <button *ngIf="!isLoading" type="submit" mat-button class='button-quote' [disabled]="f.invalid ">{{ 'results_info.submit2' | translate }}</button>
+            <div *ngIf="isLoading">
+                <mat-spinner [diameter]="40"></mat-spinner>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>

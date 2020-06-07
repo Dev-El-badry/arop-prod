@@ -1,0 +1,27 @@
+.example-fill-remaining-space {
+    
+    flex: 1 1 auto;
+  }
+
+.padding{
+    padding-left: 2px;
+}
+mat-form-field {
+    width: 100%
+}
+
+.mat-form-field-wrapper {
+    padding: 0;
+}
+.button-quote{
+    background-color: #013781;
+    color: #fff;
+    width: 100%;
+    height: 51px;
+    line-height: 51px;
+    top: -5px;
+    
+}
+#terms-and-conditions {
+    font-size: 14px;
+}

@@ -1,0 +1,97 @@
+<div class="insurance-life" style="margin-bottom: 60px;">
+    <div class='wrapper-img' style="  direction: ltr;">
+        <img class="img-responsive" src="assets/images/bk.png" style=" 
+      
+        
+        width: 100%;" height="250">
+    </div>
+    
+    <div class="container " *ngIf="!isLoading">
+
+        <mat-tab-group mat-align-tabs="center" >
+            <mat-tab  *ngFor="let item of convertObjectToKeys(totalPrice); let i = index" label="{{ 'tabs.tab'+i | translate }}">  
+               
+                <div  fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1%">
+        
+                    <div fxFlex="75%">
+            
+                        <mat-horizontal-stepper fxFlex.lt-sm="100%" linear labelPosition="bottom" #stepper>
+                            <ng-template matStepperIcon="edit">
+                                <mat-icon>check</mat-icon>
+                            </ng-template>
+            
+                            <mat-step label="{{ 'stepper.step1' | translate }}" [stepControl]="infoStatus" state="quote">
+                                
+                                <mat-card>
+                                    <h2 class="special-title">{{ 'car.covers' | translate }}</h2>
+                                    <table [dir]="direction" mat-table [dataSource]="objCovers" class="mat-elevation-z8">
+            
+                                        <ng-container matColumnDef="cover">
+                                            <th mat-header-cell *matHeaderCellDef>{{ 'car.cover' | translate }} </th>
+                                            <td mat-cell *matCellDef="let item"> {{item.cover}} </td>
+            
+                                        </ng-container>
+            
+            
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                                    </table>
+                                </mat-card>
+                            </mat-step>
+                            <mat-step label="{{ 'stepper.step2' | translate }}" [completed]="travelerInfoStatus" state="traveler">
+                                <app-get-ticket (clicked)="goForwardToPayment(stepper, $event)"></app-get-ticket>
+                            </mat-step>
+            
+                            <mat-step label="{{ 'stepper.step4' | translate }}" state="protected">
+                                <mat-card>
+                                    <mat-card-title fxLayoutAlign="center center">{{ 'personal.thankyou' | translate }}</mat-card-title>
+                                    <mat-card-content>
+                                        <div fxLayoutAlign="center center">
+                                            <mat-icon style="font-size:50px;color:rgb(36, 182, 99);" fxLayoutAlign="center center">done</mat-icon>
+                                        </div>
+                                        <div style="font-size:18px;" fxLayoutAlign="center center">
+                                            <p style="text-align:center;">{{ 'personal.title2' | translate }}</p>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </mat-step>
+                        </mat-horizontal-stepper>
+            
+            
+            
+            
+            
+                    </div>
+            
+                    <div fxFlex="25%">
+            
+                        <section class='price-card'>
+                            <mat-card style="background-color: #013781;">
+                                <form>
+                                    <div class="total-quote">
+                                        <h4 class='title'>{{ 'car.total_quote' | translate }}</h4>
+                                        <h3 class="price">{{'car.currency' | translate}} {{convertObjectToValues(totalPrice)[i] | number:'1.0-0'}}</h3>
+                                        <button mat-button class="button-quote" (click)="goToNextStepper(stepper)"> {{'car.buy' | translate}} </button>
+                                    </div>
+                                </form>
+            
+                            </mat-card>
+                        </section>
+            
+                    </div>
+            
+            
+                </div>
+
+            </mat-tab>
+           
+            
+        </mat-tab-group>
+    </div>
+
+
+    <div *ngIf="isLoading" fxLayoutAlign="center center">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>

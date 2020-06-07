@@ -1,0 +1,275 @@
+
+
+<mat-card class="info-form">
+    <h2 class="special-title">{{ 'results_info.title3' | translate }}</h2>
+
+    <form #fInfo="ngForm" (ngSubmit)="submitTravelerInfo(fInfo)">
+        <mat-radio-group color="success" aria-label="Select an option" color="primary" name="national" [(ngModel)]="national" #typeInput="ngModel" (change)="showField($event)" required>
+            <mat-radio-button value="egyptian">{{ 'traveler.egypt' | translate }}</mat-radio-button>
+            <mat-radio-button value="non">{{ 'traveler.non_egypt' | translate }}</mat-radio-button>
+        </mat-radio-group>
+        <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="88px" gutterSize="10px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.firstName' | translate }}</mat-label>
+                    <input matInput type="text" name="firstName" [ngModel]="data_info.first_name" pattern="[a-zA-Z ]*" #firstName="ngModel" required>
+                    <mat-error *ngIf="firstName.hasError('pattern')">Name Must Be In <strong>English</strong></mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.middleName' | translate }}</mat-label>
+                    <input matInput type="text" name="middleName" [ngModel]="data_info.middle_name" pattern="[a-zA-Z ]*" #middleName="ngModel" required>
+                    <mat-error *ngIf="middleName.hasError('pattern')">Name Must Be In <strong>English</strong></mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.lastName' | translate }}</mat-label>
+                    <input matInput type="text" name="lastName" [ngModel]="data_info.last_name" pattern="[a-zA-Z ]*" #lastName="ngModel" required>
+                    <mat-error *ngIf="lastName.hasError('pattern')">Name Must Be In <strong>English</strong></mat-error>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="88px" gutterSize="10px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label>{{ 'results_info.gender' | translate }}</mat-label>
+                    <mat-select name="gender" [ngModel]="data_info.gender" #gender="ngModel" required>
+                        <mat-option value="M">
+                            {{ 'results_info.male' | translate }}
+                        </mat-option>
+                        <mat-option value="F">
+                            {{ 'results_info.female' | translate }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label>{{ 'traveler.dob' | translate }}</mat-label>
+                    <input *ngIf="indi" matInput type="text" name="dateBirth" [matDatepicker]="dateBirthPicker" ngModel [(ngModel)]="date" #dateBirth="ngModel" required>
+                    <input *ngIf="!indi" matInput type="text" name="dateBirth" [matDatepicker]="dateBirthPicker" ngModel [(ngModel)]="datesList['date-0']" #dateBirth="ngModel" required>
+                    <mat-datepicker-toggle matSuffix [for]="dateBirthPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #dateBirthPicker [startAt]="dataJson?.dates['date-0']"></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.email' | translate }}</mat-label>
+                    <input matInput placeholder="Email" name="emailAddress" [ngModel]="data_info.mail" #emailAddress="ngModel" required email>
+                    <mat-error *ngIf="emailAddress.hasError('required')">Email is <strong>required</strong></mat-error>
+                    <!-- <p *ngIf="mail === false" class="custom-error">Please enter a valid email address</p> -->
+                </mat-form-field>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.phone' | translate }}</mat-label>
+                    <input matInput type="tel" name="phoneNumber" [ngModel]="data_info.phone" #phoneNumber="ngModel" required>
+                </mat-form-field>
+
+
+            </mat-grid-tile>
+
+
+            <mat-grid-tile *ngIf="isEgyptian === true" >
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.id' | translate }}</mat-label>
+
+                    <input matInput name="id" [ngModel]="data_info.id" minlength="14" maxlength="14" #id="ngModel" (input)="checkId()">
+                    <mat-hint align="end">{{id.value?.length || 0}}/14</mat-hint>
+
+                    <p *ngIf="cid === false" class="custom-error">{{ 'results_info.id_alert' | translate }}</p>
+                    <p *ngIf="cid && id.errors?.minlength" class="custom-error">{{ 'results_info.id_alert2' | translate }}</p>
+                </mat-form-field>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="isEgyptian === true">
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.passport' | translate }}</mat-label>
+                    <input matInput type="text" pattern="^(\d|\w)+$"  name="Passport" [ngModel]="data_info.Passport" #Passport="ngModel" required>
+                    <!-- <mat-error *ngIf="Passport.invalid">{{'traveler.validation_passport' | translate}}</mat-error>
+                    <mat-hint align="end">{{Passport.value?.length || 0}}/14</mat-hint> -->
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="!isEgyptian">
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.passport' | translate }}</mat-label>
+                    <input matInput type="text"  name="Passport" [ngModel]="data_info.Passport" #Passport="ngModel" required>
+                  
+                <mat-hint align="end">{{Passport.value?.length || 0}}/14</mat-hint>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="isEgyptian === false">
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.enter_address' | translate }}</mat-label>
+                    <input matInput type="text" name="address" [ngModel]="data_info.address" #address="ngModel" required>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list *ngIf="isEgyptian === true" cols="1" rowHeight="88px" gutterSize="10px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.enter_address' | translate }}</mat-label>
+                    <input matInput type="text" name="address"  [ngModel]="data_info.address" #address="ngModel" required>
+                </mat-form-field>
+            </mat-grid-tile>
+
+        </mat-grid-list>
+
+        <div ngModelGroup="additionalTravelers" #additionalTravelers="ngModelGroup" *ngIf="numOfTravelers.length > 1">
+
+            <section class="additional-travelers">
+                <h2 class="title">{{ 'results_info.additional_traveler' | translate }}</h2>
+
+                <ng-container *ngFor="let traveler of numOfTravelers | slice:1; let i = index">
+                    <div class="typeSection">
+
+                        <h2 class="title">{{ 'results_info.traveler' | translate }} {{i+1}}</h2>
+                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1%">
+                            <div fxFlex.gt-sm="33.33333%" fxFlex.lt-sm="100%">
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label> {{ 'results_info.firstName' | translate }}</mat-label>
+                                    <input matInput type="text" name="tfirstName{{traveler}}" ngModel #tfirstName="ngModel" pattern="[a-zA-Z ]*" required>
+                                    <mat-error *ngIf="tfirstName.hasError('pattern')">Name Must Be In <strong>English</strong></mat-error>
+                                </mat-form-field>
+
+
+
+                            </div>
+                            <div fxFlex.gt-sm="33.33333%" fxFlex.lt-sm="100%">
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label> {{ 'results_info.middleName' | translate }}</mat-label>
+                                    <input matInput type="text" name="tmiddleName{{traveler}}" ngModel #tmiddleName="ngModel" pattern="[a-zA-Z ]*" required>
+                                    <mat-error *ngIf="tmiddleName.hasError('pattern')">Name Must Be In <strong>English</strong></mat-error>
+                                </mat-form-field>
+
+
+
+                            </div>
+
+                            <div fxFlex.gt-sm="33.33333%" fxFlex.lt-sm="100%">
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label>{{ 'results_info.lastName' | translate }}</mat-label>
+                                    <input matInput type="text" name="tlastName{{traveler}}" ngModel #tlastName="ngModel" pattern="[a-zA-Z ]*" required>
+                                    <mat-error *ngIf="tlastName.hasError('pattern')">Name Must Be In <strong>English</strong></mat-error>
+                                </mat-form-field>
+
+
+                            </div>
+                        </div>
+                        <!-- end div.flexLayout -->
+
+                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1%">
+                            <div fxFlex.gt-sm="33.33333%" fxFlex.lt-sm="100%">
+                                <div class="form-group" *ngIf="typesList['type-'+traveler] == 'kid'">
+                                    <mat-form-field appearance="outline" class='form-field'>
+                                        <mat-label> {{ 'results_info.dob' | translate }}</mat-label>
+                                        <input matInput type="text" [min]="minDateKid" [max]="maxDateKid" [matDatepicker]="birthDatePicker" name="tbirthDate{{traveler}}" [(ngModel)]="datesList['date-'+traveler]" #tbirthDate="ngModel">
+                                        <mat-datepicker-toggle matSuffix [for]="birthDatePicker" onkeydown="return false"></mat-datepicker-toggle>
+                                        <mat-datepicker [startAt]="datesList['date-'+traveler]" #birthDatePicker onkeydown="return false"></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <!-- end form-group -->
+                                <div class="form-group" *ngIf="typesList['type-'+traveler] == 'spouse'">
+                                    <mat-form-field appearance="outline" class='form-field'>
+                                        <mat-label> {{ 'results_info.dob' | translate }}</mat-label>
+                                        <input matInput type="text" [matDatepicker]="birthDatePicker" [max]="maxDateKid" name="tbirthDate{{traveler}}" [(ngModel)]="datesList['date-'+traveler]" #tbirthDate="ngModel">
+                                        <mat-datepicker-toggle matSuffix [for]="birthDatePicker" onkeydown="return false"></mat-datepicker-toggle>
+                                        <mat-datepicker [startAt]="datesList['date-'+traveler]" #birthDatePicker onkeydown="return false"></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <!-- end form-group -->
+                            </div>
+                            <div fxFlex.gt-sm="33.33333%" fxFlex.lt-sm="100%">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>{{ 'results_info.type' | translate }}</mat-label>
+                                    <mat-select name="type{{traveler}}" class="selectOptionType" [(ngModel)]="typesList['type-'+traveler]" #type="ngModel">
+                                        <mat-option *ngFor="let type of types" [value]="type.value">
+                                            {{type.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex.gt-sm="33.33333%" fxFlex.lt-sm="100%">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>{{ 'results_info.gender' | translate }}</mat-label>
+                                    <mat-select name="tgender{{traveler}}" class="selectOptionType" ngModel #tgender="ngModel">
+                                        <mat-option value="M">
+                                            {{ 'results_info.male' | translate }}
+                                        </mat-option>
+                                        <mat-option value="F">
+                                            {{ 'results_info.female' | translate }}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <!-- end form-group -->
+
+
+                        </div>
+                        <!-- end div.flexLayout -->
+                        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1%">
+
+
+
+                            <div fxFlex="50">
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label> {{ 'results_info.id' | translate }}</mat-label>
+                                    <input matInput type="number" name="tid{{traveler}}" ngModel #tid="ngModel" required>
+                                </mat-form-field>
+                            </div>
+
+  
+                
+                            <div fxFlex="50%"  *ngIf="isEgyptian === true">
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label> {{ 'results_info.passport' | translate }}</mat-label>
+                                    <input matInput type="text" pattern="^(\d|\w)+$"  name="tpassport{{traveler}}" [ngModel]="data_info.Passport" #tpassport="ngModel" required>
+                                    <!-- <mat-error *ngIf="tpassport.invalid">{{'traveler.validation_passport' | translate}}</mat-error>
+                                    <mat-hint align="end">{{tpassport.value?.length || 0}}/14</mat-hint>       -->
+                                </mat-form-field>
+                            </div>
+                            <div fxFlex="50%" *ngIf="isEgyptian === false">
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label> {{ 'results_info.passport' | translate }}</mat-label>
+                                    <input matInput type="text" name="tpassport{{traveler}}" ngModel #tpassport="ngModel" required>
+                                    <!-- <mat-hint align="end">{{tpassport.value?.length || 0}}/14</mat-hint>                                </mat-form-field> -->
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- end div.flexLayout -->
+                    </div>
+                </ng-container>
+
+
+
+
+            </section>
+
+        </div>
+<p>
+    <mat-checkbox [ngModel]="data_info.confirm" #checkbox="ngModel" name="terms"  color="primary" required> {{ 'results_info.alert2' | translate }} <a href="http://207.154.195.214/TravelWording_General_Conditions.pdf" download target="_blank">{{ 'results_info.terms' | translate }}</a></mat-checkbox>
+
+</p>
+<p>
+
+    <mat-checkbox [ngModel]="data_info.chk" #chk="ngModel" name="chk"  color="primary" required> {{ 'results_info.chk' | translate }}</mat-checkbox>
+</p>
+<p>
+
+    <mat-checkbox [ngModel]="data_info.condition" #condition="ngModel" name="condition"  color="primary" required> {{ 'notes.condition' | translate }} <a href="http://207.154.195.214/دليل حماية المتعاملين في التأمين.pdf" target="_blank" rel="noopener noreferrer">{{ 'notes.guide'|translate }}</a></mat-checkbox>
+</p>
+        <br> <br>
+        <!-- <p *ngIf="isFirstPolicy == false" style="color:red;">{{ 'results_info.firstPolicy' | translate }}</p> -->
+        <button  *ngIf="lang =='en'" type="submit" mat-button class='button-quote' [disabled]="fInfo.invalid  || cid !== true">{{ 'results_info.complate' | translate }} <mat-icon>arrow_right_alt</mat-icon></button>
+        <button style="direction: rtl;" *ngIf="lang =='ar'" type="submit" mat-button class='button-quote' [disabled]="fInfo.invalid || cid !== true">{{ 'results_info.complate' | translate }} <span class="mdi mdi-arrow-left "></span></button>
+    </form>
+</mat-card>

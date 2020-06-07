@@ -1,0 +1,12 @@
+.img-background {
+    background-size: cover;
+    width: auto;
+    background-image: url('/assets/images/background-img.jpg');
+    height: calc(100vh - 134px);
+}
+
+@media  screen and (max-width: 600px) {
+    .img-background {
+        height: 115vh;
+    }
+}

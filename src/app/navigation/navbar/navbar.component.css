@@ -1,0 +1,87 @@
+.navbar-navigation {
+    color: #A09F9D;
+    background-color: #fff;
+    -webkit-transition: background-color color 2s;
+    /* For Safari 3.1 to 6.0 */
+    transition: background-color color 2s;
+}
+
+mat-toolbar {
+    direction: ltr !important;
+}
+
+.navigation-links {
+    color: red;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.nav-item {
+    margin: auto 10px;
+}
+
+.nav-item:first-child {
+    margin: auto 0px;
+}
+
+a {
+    cursor: pointer;
+    transition: height .5s ease-out 1s;
+}
+
+.link-target:hover {
+    color: #fff;
+}
+
+.icon-margin {
+    margin-right: 3px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    padding: 1px;
+}
+
+.phone-call {
+    font-weight: bold;
+}
+
+a:hover {
+    /* border: 0;
+    padding: 14px 14px;
+    background: #073e89;
+    color: #fff !important;
+    height: 25px !important;
+    border-top-left-radius: 8px;
+    line-height: 25px !important;
+    border-bottom-right-radius: 8px;
+    color: #fff; */
+}
+
+.active-link {
+    border: 0;
+    padding: 14px 14px;
+    background: #073e89;
+    color: #fff !important;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.navigation-links {
+    list-style-type: none;
+}
+
+.logo {
+    line-height: 1px;
+}
+
+.icon-menu {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 8px;
+    background: #073e89;
+    color: #e4eaf2;
+}
+
+.link {
+    color: #A09F9D;
+    text-decoration: none;
+}

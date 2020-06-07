@@ -1,0 +1,39 @@
+<div class='wrapper-img'>
+    <img class="img-responsive" src="assets/images/couple-grand.jpg">
+</div>
+<br>
+<div class='container' fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1%">
+    <br>
+    <div fxFlex="75%">
+        <mat-horizontal-stepper fxFlex.lt-sm="100%" linear labelPosition="bottom" #stepper>
+            <ng-template matStepperIcon="edit">
+                <mat-icon>check</mat-icon>
+            </ng-template>
+
+            <mat-step label="{{ 'stepper.step1' | translate }}" [completed]="infoStatus" state="quote">
+                <app-quote fxFlex.lt-sm="100%"></app-quote>
+            </mat-step>
+            <mat-step label="{{ 'stepper.step2' | translate }}" [completed]="travelerInfoStatus" state="traveler">
+                <app-get-ticket (clicked)="goForwardToPayment(stepper, $event)"></app-get-ticket>
+            </mat-step>
+
+            <mat-step label="{{ 'stepper.step4' | translate }}" state="protected">
+                <mat-card>
+                    <mat-card-title fxLayoutAlign="center center">{{ 'personal.thankyou' | translate }}</mat-card-title>
+                    <mat-card-content>
+                        <div fxLayoutAlign="center center">
+                            <mat-icon style="font-size:50px;color:rgb(36, 182, 99);" fxLayoutAlign="center center">done</mat-icon>
+                        </div>
+                        <div style="font-size:18px;" fxLayoutAlign="center center">
+                            <p style="text-align:center;">{{ 'personal.title2' | translate }}</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </mat-step>
+        </mat-horizontal-stepper>
+
+    </div>
+    <div fxFlex="25%">
+        <app-price-card (clicked)="goForward(stepper, $event)"></app-price-card>
+    </div>
+</div>

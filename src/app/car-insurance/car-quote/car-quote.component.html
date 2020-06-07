@@ -1,0 +1,114 @@
+<section class="get_qoute">
+    <form #f="ngForm" (ngSubmit)="submitForm(f)">
+
+
+        <mat-card fxFlex="700px" fxFlex.xs="100%" class='overlay'>
+            <mat-card-title fxLayoutAlign="flex-start">{{ 'car.title' | translate }}</mat-card-title>
+            <mat-card-content>
+
+                <mat-radio-group aria-label="Select an option" color="primary" name="type" ngModel="General" #typeInput="ngModel" required>
+                    <mat-radio-button value="General">{{ 'car.general' | translate }}</mat-radio-button>
+                    <mat-radio-button value="Total Loss Only">{{ 'car.total_loss' | translate }}</mat-radio-button>
+                </mat-radio-group>
+
+
+                <br><br>
+              
+                <mat-grid-list [cols]="breakpoint" rowHeight="75px" gutterSize="10px" (window:resize)="onResize($event)">
+
+
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label>{{ 'car.brands' | translate }}</mat-label>
+                            <mat-select name="brandCar" ngModel #brandCar="ngModel" required>
+                                <ngx-mat-select-search [placeholderLabel]="'Find Brand'" [noEntriesFoundLabel]="'No matching brands found'" [formControl]="brandFilterCtrl"
+                                    ngDefaultControl></ngx-mat-select-search>
+                                <mat-option *ngFor="let brand of brands" [value]="brand.id">
+                                    {{brand.title}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label>{{ 'car.price' | translate }} </mat-label>
+                            <input type="text" matInput ngModel name="price" #price="ngModel" required>
+
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label>{{ 'Country of Origin' | uppercase }}</mat-label>
+                            <mat-select name="brand" ngModel #brand="ngModel" required>
+                                <mat-option value="all brands">
+                                    {{ 'car.brand1' | translate }}
+
+                                </mat-option>
+
+                                <mat-option value="chinese cars & east asia">
+                                    {{ 'car.brand2' | translate }}
+
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <!-- <mat-grid-tile *ngIf="checkDeductibleRateOptions(f) != false" >
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label>{{ 'car.deductible' | translate }}</mat-label>
+                            <mat-select name="deductibleRate" ngModel #deductibleRate="ngModel" required>
+                                <mat-option value="option1">
+                                    {{'car.option1' | translate}}
+                                </mat-option>
+                                <mat-option value="option2">
+                                    {{'car.option2' | translate}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile> -->
+
+
+                    <mat-grid-tile *ngIf="checkDeductibleRateOptions(f) == false" >
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label>{{ 'car.model_year' | translate }}</mat-label>
+                            <mat-select name="year" ngModel #year="ngModel" required>
+                                <mat-option *ngFor="let year of years" [value]="year">
+                                    {{year}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile  *ngIf="checkDeductibleRateOptions(f) != false">
+                        <mat-form-field appearance="outline" class='form-field' >
+                            <mat-label>{{ 'car.model_year' | translate }}</mat-label>
+                            <mat-select name="year" ngModel #year="ngModel" required>
+                                <mat-option *ngFor="let year of years" [value]="year">
+                                    {{year}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <!-- <mat-grid-list *ngIf="checkDeductibleRateOptions(f) != false" cols="1" rowHeight="75px" gutterSize="10px">
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label>{{ 'car.model_year' | translate }}</mat-label>
+                            <mat-select name="year" ngModel #year="ngModel" required>
+                                <mat-option *ngFor="let year of years" [value]="year">
+                                    {{year}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list> -->
+
+                <br><br>
+                <button class='button-quote' mat-button color="primary" type="submit" [disabled]="!f.valid">{{ 'car.get_quote' | translate }}</button>
+
+            </mat-card-content>
+        </mat-card>
+    </form>
+</section>

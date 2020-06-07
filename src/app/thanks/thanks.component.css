@@ -1,0 +1,24 @@
+.wrapper-content {
+    height: 600px;
+}
+
+.img-background {
+    background-size: cover;
+    width: auto;
+    background-image: url('/assets/images/background-img.jpg');
+    height: calc(100vh - 134px);
+}
+
+mat-card-title {
+    margin-bottom: 20px;
+}
+
+.container-welcome {
+    margin: auto 40px !important;
+}
+
+@media only screen and (max-width: 1000px) {
+    .container-welcome {
+        margin: auto 10px !important;
+    }
+}

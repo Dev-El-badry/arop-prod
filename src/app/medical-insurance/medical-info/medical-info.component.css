@@ -1,0 +1,105 @@
+table {
+    width: 100%;
+    text-align: center;
+    font-family: 'Tajawal' !important;
+    font-size: normal;
+}
+
+.big-text {
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.small-text {
+   
+    
+    font-size: 16px;
+    color: #575757;
+}
+
+mat-card-title {
+    font-family: 'Tajawal' !important;
+}
+
+.insurance-life {
+    font-family: 'Tajawal' !important;
+}
+
+.mdi-close {
+    color: red !important;
+}
+
+.mdi-check {
+    color: #22bb33;
+}
+
+.mdi {
+    font-size: 35px;
+}
+
+th.mat-header-cell {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    background-color: #073e89;
+    color: #fff;
+}
+
+td.mat-cell {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+td.mat-cell.cdk-column-features {
+    color: #073e89;
+    text-align: center !important;
+}
+
+th.mat-header-cell.cdk-column-cover.mat-column-cover {
+    text-align: center !important;
+}
+
+th.mat-header-cell.cdk-column-Blue,
+th.mat-header-cell.cdk-column-Prestige,
+th.mat-header-cell.cdk-column-Elite {
+    padding: 12px;
+    text-align: center !important;
+}
+
+th.mat-header-cell.cdk-column-Blue button,
+th.mat-header-cell.cdk-column-Prestige button,
+th.mat-header-cell.cdk-column-Elite button {
+    margin-top: 8px;
+    color: #fff;
+    background-color: #e77a11;
+}
+
+td.mat-cell.cdk-column-Elite:first-of-type,
+td.mat-cell.cdk-column-Prestige:first-of-type,
+td.mat-cell.cdk-column-Blue:first-of-type {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+td.mat-cell.cdk-column-cover.mat-column-cover {
+    color: #073e89;
+}
+
+th.mat-header-cell.cdk-column-elite,
+th.mat-header-cell.cdk-column-prestige,
+th.mat-header-cell.cdk-column-blue {
+    padding: 12px;
+}
+
+td.mat-cell.cdk-column-cover,
+td.mat-cell.cdk-column-Elite,
+td.mat-cell.cdk-column-Prestige,
+td.mat-cell.cdk-column-Blue {
+    width: 25%;
+    border-left: .5px solid #073e89;
+}
+
+td.mat-cell.cdk-column-Blue {
+    width: 25%;
+    border-left: 0px;
+}

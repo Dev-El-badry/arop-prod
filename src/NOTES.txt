@@ -1,0 +1,63 @@
+Show Dates On Info Form (Done)
+
+Handle Errors (Done)
+
+Show Loading (Done)
+
+When Hit Buy GO Up To Page (Done)
+
+Hight Of Welcome Page (Done)
+
+Catch Price And Show It When Load Page 
+
+Date - 30 Days In Individual (Done)
+
+
+
+---------------- tasks [7/4]
+1 direction rtl => fix issue in family dialog
+    1.1 date picker [style]
+
+
+2 move in links with values in URLs
+    2.1 traveler quote
+        2.1.1- Individual
+        2.1.2- family
+        2.1.3- Group
+    2.2 traveler Info
+        2.2.1- info form (individual - family - group)
+        2.2.1- trip details (individual - family - group)
+    
+    2.3 personal Accident
+        2.3.1- info personal accident
+
+3 navbar links
+    3.1 fix issue in direction rtl [in responsive design] 
+
+4 fix issue in update [time of arrival] => in traveler quote    
+
+[issue in input design (material design)] [Done]
+
+
+
+/////// qnp payment gataway
+
+complate form fields [Done]
+stop button button price card [Done]
+stop button complate purchase [Done]
+
+
+show button return to Homepage in thankyou Page [Done]
+clear localstorage after leave thankyou Page [Done]
+
+
+when open open traveler info page check if localstorage is not null 
+
+
+//////// personal acceident task [22/4]
+
+complate fields info form (personal accident) [Done]
+stop button button price card  [Done]
+stop button complate purchase  [Done]
+show button return to Homepage in thankyou Page  [Done]
+clear localstorage after leave thankyou Page  [Done]

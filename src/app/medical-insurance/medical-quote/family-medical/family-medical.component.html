@@ -1,0 +1,40 @@
+<div [formGroup]="form">
+    <!-- <div class="half-width-field">
+        <mat-form-field appearance="outline" class='form-field'>
+                <mat-label>{{'medical.relase' | translate}}</mat-label>
+                <input type="text" matInput [matDatepicker]="picker" name="releaseDate" #releaseDate [ngModel]="releaseDate" #releaseDate="ngModel" matInput placeholder="Release Date" [min]="maxRelaseDate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker [startAt]="releaseDate" #picker (closed)="inputAge.blur()" startView="multi-year"></mat-datepicker>
+        </mat-form-field>
+    </div> -->
+    <div formArrayName="dates">
+        <span *ngFor="let count of datesCount.controls; let i = index" class="family">
+            <div fxLayout="row" fxLayoutGap="1%" id="field-{{i}}">
+                <div class="left-field" fxFlex="46%">
+                    <mat-form-field appearance="outline" class="form-field">
+                    <mat-label>{{ 'traveler.dob' | translate }}</mat-label>
+                        <input type="text" matInput [matDatepicker]="agePicker"   #inputAge
+                            placeholder="Date Of Birth" [max]="minDate" [formControlName]="i" required>
+                        <mat-datepicker-toggle matSuffix [for]="agePicker"></mat-datepicker-toggle>
+                        <mat-datepicker (closed)="inputAge.blur()" startView="multi-year" #agePicker #agePicker>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+
+                <div *ngIf="i !== 0" class="right-field" fxFlex="3%" fxLayoutAlign="center center"
+                    (click)="deleteElement(i)">
+
+                    <mat-icon style="
+                    line-height: 10px;
+
+                    border-radius: 5px;
+                    background: salmon;
+                    cursor: pointer;
+                ">minimize</mat-icon>
+                </div>
+            </div>
+        </span>
+
+    </div>
+</div>

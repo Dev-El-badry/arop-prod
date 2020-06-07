@@ -1,0 +1,231 @@
+<mat-card>
+    <h2 class="special-title">{{ 'results_info.title2' | translate }}</h2>
+
+    <form #fInfo="ngForm" (ngSubmit)="submitPersonalInfo(fInfo)">
+        <mat-radio-group color="success" aria-label="Select an option" color="primary" name="policyLang" [(ngModel)]="policyLang" #typeInput="ngModel" required>
+            <mat-radio-button value="ar">{{ 'personal.ar' | translate }}</mat-radio-button>
+            <mat-radio-button value="en">{{ 'personal.en' | translate }}</mat-radio-button>
+        </mat-radio-group>
+        <h4>{{'personal.lang_note' | translate}}</h4>
+        <mat-grid-list [cols]="breakpoint2" (window:resize)="onResize($event)" rowHeight="88px" gutterSize="10px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.firstName' | translate }}</mat-label>
+                    <input matInput type="text" name="firstName" [ngModel]="data_info.first_name" #firstName="ngModel" required>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.middleName' | translate }}</mat-label>
+                    <input matInput type="text" name="middleName" [ngModel]="data_info.middle_name" #middleName="ngModel" required>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.lastName' | translate }}</mat-label>
+                    <input matInput type="text" name="lastName" [ngModel]="data_info.last_name" #lastName="ngModel" required>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="88px" gutterSize="10px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label>{{ 'results_info.gender' | translate }}</mat-label>
+                    <mat-select name="gender" [(ngModel)]="data_info.gender" #gender="ngModel" required>
+                      
+                        <mat-option value="male">
+                            {{ 'results_info.male' | translate }}
+                        </mat-option>
+                        <mat-option value="female">
+                            {{ 'results_info.female' | translate }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'traveler.dob' | translate }}</mat-label>
+                    <input type="text" matInput [matDatepicker]="agePicker" #inputAge placeholder="Date Of Birth" [max]="minDate" [ngModel]="date" name="indAge" [(ngModel)]="date" #indAge="ngModel" required>
+                    <mat-datepicker-toggle matSuffix [for]="agePicker"></mat-datepicker-toggle>
+                    <mat-datepicker (closed)="inputAge.blur()" [startAt]="date" #agePicker></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.email' | translate }}</mat-label>
+                    <input matInput placeholder="Email" name="emailAddress" [ngModel]="data_info.mail" #emailAddress="ngModel" required email>
+                    <mat-error *ngIf="emailAddress.hasError('required')">{{ 'results_info.email_alert' | translate }} <strong>{{ 'results_info.required' | translate }}</strong></mat-error>
+                    <!-- <p *ngIf="mail === false" class="custom-error">Please enter a valid email address</p>                 -->
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.phone' | translate }}</mat-label>
+                    <input matInput type="tel" name="phoneNumber" [ngModel]="data_info.phone" #phoneNumber="ngModel" required>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.id' | translate }}</mat-label>
+                    <input matInput name="id" ngModel #id="ngModel" minlength="14" maxlength="14" required (input)="checkId()">
+                    <mat-hint align="start">{{id.value?.length || 0}}/14</mat-hint>
+                    <p *ngIf="cid === false" class="custom-error"> {{ 'results_info.id_alert' | translate }}</p>
+                    <p *ngIf="cid && id.errors?.minlength" class="custom-error">{{ 'results_info.id_alert2' | translate }}</p>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label>{{"personal.national" | translate}}</mat-label>
+                    <mat-select name="national" ngModel #national="ngModel" required>
+                        <mat-option value="egyptian">
+                        {{'traveler.egypt' | translate }}
+                        </mat-option>
+                        <mat-option value="non_egyptian">
+                            {{'traveler.non_egypt' | translate }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.city' | translate }}</mat-label>
+                    <input matInput type="text" name="city" ngModel #city="ngModel" required>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" class='form-field'>
+                    <mat-label> {{ 'results_info.enter_address' | translate }}</mat-label>
+                    <input matInput type="text" name="address" [ngModel]="data_info.address" #address="ngModel" required>
+                </mat-form-field>
+            </mat-grid-tile>
+
+
+            <mat-grid-tile [colspan]="breakpoint">
+
+                <mat-label style="width: 200px;">
+                    {{"personal.alert_info" | translate}}
+                </mat-label>
+                <mat-radio-group name="after_die" [ngModel]="data_info.after_die" #after_die="ngModel" required>
+                    <mat-radio-button value="true">{{ 'personal.option1' | translate }}</mat-radio-button>
+                    <mat-radio-button value="false">{{ 'personal.option2' | translate }}</mat-radio-button>
+                </mat-radio-group>
+
+            </mat-grid-tile>
+
+
+        </mat-grid-list>
+
+        <mat-card style="    width: 96%;
+        margin-bottom: 20px;
+        margin-top: 20px; background-color: #f3f3f3;" *ngIf="after_die.value == 'false'">
+            <!-- Start From Others -->
+
+    
+            <div ngModelGroup="others" #others="ngModelGroup">
+
+                <span *ngFor="let count of element; let i = index" class="family">
+                  
+                        <div fxLayout="row" fxLayoutGap="1%" id="field-{{i}}">
+                            <h4 style="width: 250px;">{{'personal.personal' | translate}} #{{i+1}}</h4>
+
+                        <div ngModelGroup="{{i}}" #num="ngModelGroup" style="width: 100%;" *ngIf="chkOther">
+                            <div class="left-field" fxFlex="29%" style="    margin: auto 10px;">
+                                <mat-form-field appearance="outline" class="form-field" >
+                                <mat-label>{{ 'personal.name' | translate }}</mat-label>
+                                <input type="text" name="name" matInput  [ngModel]="othere[i]?.name" #name="ngModel" 
+                                        placeholder="{{'personal.name' | translate}}"  required>
+                                    
+                                </mat-form-field>
+                            </div>
+                            <div class="left-field" fxFlex="29%" style="margin: auto 10px;">
+                                <mat-form-field appearance="outline" class="form-field">
+                                <mat-label>{{ 'personal.rate' | translate }}</mat-label>
+                                    <input type="text" name="rate" matInput [ngModel]="othere[i]?.rate" (blur)="checkRate()"  #rate="ngModel" 
+                                        placeholder="{{'personal.rate' | translate}}"  required>
+                                    
+                                </mat-form-field>
+                            </div>
+                            <div class="left-field" fxFlex="29%">
+                                <mat-form-field appearance="outline" class="form-field">
+                                    <mat-label>{{ 'results_info.relationship' | translate }}</mat-label>
+                                    <input type="text" name="relationship" matInput [ngModel]="othere[i]?.relationship"  #relationship="ngModel" required>
+                                    
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div ngModelGroup="{{i}}" #num="ngModelGroup" style="width: 100%;" *ngIf="!chkOther">
+                            <div class="left-field" fxFlex="29%" style="margin: auto 10px;">
+                                <mat-form-field appearance="outline" class="form-field" >
+                                <mat-label>{{ 'personal.name' | translate }}</mat-label>
+                                <input type="text" name="name" matInput  ngModel #name="ngModel" 
+                                        placeholder="{{'personal.name' | translate}}"  required>
+                                    
+                                </mat-form-field>
+                            </div>
+                            <div class="left-field" fxFlex="29%" style="margin: auto 10px;">
+                                <mat-form-field appearance="outline" class="form-field">
+                                <mat-label>{{ 'personal.rate' | translate }}</mat-label>
+                                    <input type="text" name="rate" matInput ngModel  #rate="ngModel" 
+                                        placeholder="{{'personal.rate' | translate}}" (blur)="checkRate()"  required>
+                                    
+                                </mat-form-field>
+                            </div>
+                            <div class="left-field" fxFlex="29%">
+                                <mat-form-field appearance="outline" class="form-field">
+                                    <mat-label>{{ 'results_info.relationship' | translate }}</mat-label>
+                                    <input type="text" name="relationship" matInput ngModel  #relationship="ngModel" required>
+                                    
+                                </mat-form-field>
+                            </div>
+                        </div>
+                
+                            <div *ngIf="i !== 0" class="right-field" fxFlex="3%" fxLayoutAlign="center center"
+                                (click)="deleteElement(i)">
+                
+                                <mat-icon style="  
+                                line-height: 10px;
+                                border-radius: 5px;
+                                background: salmon;
+                                cursor: pointer;
+                                ">minimize</mat-icon>
+                            </div>
+                        </div>
+                    </span>
+
+            </div>
+            <p *ngIf="cRate === false" class="custom-error-rate"> {{ 'results_info.rate_alert' | translate }}</p>
+
+            <!-- <button mat-raised-button type="button" color="primary" (click)="increaseElement()"> 
+                <mat-icon>add</mat-icon>
+                {{ 'traveler.add_addtional' | translate }}
+            </button> -->
+
+            <div style="cursor: pointer; color: #565656" onMouseOver="this.style.color='#073e89'" onMouseOut="this.style.color='#565656'" (click)="increaseElement()" fxLayout fxLayoutAlign="flex-start">
+                <span class="mdi mdi-plus" style="    font-size: 15px;" icon-margin mat-raise-button color="primary"></span> {{ 'personal.add_addtional' | translate }}
+
+            </div>
+
+            <!-- End Form Others-->
+        </mat-card>
+
+
+
+        <p>
+            <mat-checkbox [ngModel]="confirm" #checkbox="ngModel" name="terms"  color="primary" required> {{ 'results_info.alert2' | translate }} <a href="http://207.154.195.214/PA_General_Conditions.pdf" download target="_blank">{{ 'results_info.terms' | translate }}</a></mat-checkbox>
+        
+        </p>
+        
+        <p>
+        
+            <mat-checkbox [ngModel]="conditions" #condition="ngModel" name="condition"  color="primary" required> {{ 'notes.condition' | translate }} <a href="http://207.154.195.214/دليل حماية المتعاملين في التأمين.pdf" target="_blank" rel="noopener noreferrer">{{ 'notes.guide'|translate }}</a></mat-checkbox>
+        </p>
+                <br> <br>
+        
+        <button *ngIf="lang =='en'" type="submit" mat-button class='button-quote' [disabled]="fInfo.invalid ||  cid !== true ||  cRate !== true">{{ 'results_info.complate' | translate }} <mat-icon>arrow_right_alt</mat-icon></button>
+        <button *ngIf="lang =='ar'" style="direction: rtl;" type="submit" mat-button class='button-quote' [disabled]="fInfo.invalid ||  cid !== true ||  cRate !== true">{{ 'results_info.complate' | translate }} <mat-icon>arrow_left_alt</mat-icon></button>
+
+    </form>
+</mat-card>

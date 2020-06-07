@@ -1,0 +1,129 @@
+<section class="get_qoute">
+    <form #f="ngForm" (ngSubmit)="submitForm(f)">
+
+        <input type="hidden" name="types" [ngModel]="familyDataString" #types="ngModel">
+        <mat-card fxFlex="750px" fxFlex.xs="100%" class='overlay'>
+            <mat-card-title fxLayoutAlign="flex-start">{{ 'traveler.title' | translate }}</mat-card-title>
+            <mat-card-content>
+
+                <mat-radio-group color="success" aria-label="Select an option" color="primary" name="type" [(ngModel)]="formFields.typeTraveler" #typeInput="ngModel" (change)="showField($event)" required>
+                    <mat-radio-button value="individual">{{ 'traveler.indi' | translate }}</mat-radio-button>
+                    <mat-radio-button value="family">{{ 'traveler.family' | translate }}</mat-radio-button>
+                    <mat-radio-button value="group">{{ 'traveler.group' | translate }}</mat-radio-button>
+                </mat-radio-group>
+
+
+                <br><br>
+                <mat-grid-list [cols]="breakpoint" rowHeight="75px" (window:resize)="onResize($event)" gutterSize="10px">
+
+
+                    <mat-grid-tile>
+
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label>{{ 'traveler.zone' | translate }}</mat-label>
+                            <mat-select name="zone" [(ngModel)]="formFields.zone" #zoneInput="ngModel" required>
+                                <mat-option value="zone 1">
+                                    {{'traveler.opt1' | translate}}
+                                </mat-option>
+                                <mat-option value="zone 2">
+                                    {{'traveler.opt2'| translate}}
+                                </mat-option>
+                                <mat-option value="zone 3">
+                                    {{'traveler.opt3'| translate}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </mat-grid-tile>
+                    <mat-grid-tile *ngIf="isFamly">
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label> {{ 'traveler.dob' | translate }}</mat-label>
+                            <input type="text" matInput (click)="this.showPopup()" [(ngModel)]="formFields.dates" name="familyAges" #familyAges="ngModel" required>
+
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+
+                    <mat-grid-tile *ngIf="isIndividual">
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label> {{ 'traveler.dob' | translate }}</mat-label>
+                            <input type="text" matInput [matDatepicker]="agePicker" [(ngModel)]="formFields.date" #inputAge [max]="minDate" [min]="indiMaxDate" name="indAge" #indAge="ngModel" required>
+                            <mat-datepicker-toggle matSuffix [for]="agePicker"></mat-datepicker-toggle>
+                            <mat-datepicker (closed)="inputAge.blur()" (closed)="checkAgeNot85(f)" startView="multi-year" #agePicker [startAt]="formFields.date" #agePicker></mat-datepicker>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile *ngIf="isGroup">
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label> {{ 'traveler.numOfTravelers' | translate }}</mat-label>
+                            <input type="text" matInput (click)="this.showGrpupPopup()" [ngModel]="groupAge" name="groupAges" #groupAges="ngModel" required>
+
+                            <!-- <input type="number" matInput placeholder="number of group" ngModel name="numOfGroup" #numOfGroup="ngModel" required> -->
+
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+
+                </mat-grid-list>
+                <mat-grid-list [cols]="breakpoint2" rowHeight="75px" (window:resize)="onResize($event)" gutterSize="10px">
+
+                    <mat-grid-tile>
+
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label> {{ 'traveler.from' | translate }}</mat-label>
+
+                            <!-- <input matInput > -->
+
+
+                            <input type="text" matInput [matDatepicker]="picker" name="dateWhen" #inputWhen [ngModel]="formFields.when" #dateWhen="ngModel" required [min]="maxDate">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker [startAt]="formFields.when" #picker (closed)="getdate(f)" (closed)="checkAgeNot85(f)" #picker>
+                            </mat-datepicker>
+
+
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label>{{"traveler.period"| translate}}</mat-label>
+                            <mat-select name="period" ngModel #periodInput="ngModel" (closed)="getdate(f)" (closed)="checkAgeNot85(f)" required>
+                                <mat-option *ngFor="let period of periods" [value]="period">
+                                {{period}} <span *ngIf="period > 10">{{ 'traveler.day' | translate }}</span>
+                                <span *ngIf="period <= 10">{{ 'traveler.days' | translate }}</span>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-form-field appearance="outline" class='form-field'>
+                            <mat-label> {{ 'traveler.to' | translate }}</mat-label>
+                            <!-- <input matInput > -->
+
+                            <input type="text" readonly matInput [matDatepicker]="picker1" name="dateTill" #inputTill [(ngModel)]="newDate" #dateTill="ngModel" required [min]="dateWhen.value">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker (closed)="inputTill.blur()" disabled #picker1 [startAt]="newDate" #picker1></mat-datepicker>
+
+
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <div class="clearfix"></div>
+
+
+                <p *ngIf="isNotMore85 !== true" class="custom-error">{{ 'traveler.err85' | translate }}</p>
+                <p *ngIf="isFamly">{{'traveler.familyMean'| translate}}</p>
+                <mat-checkbox color="primary" ngModel #checkbox name="egyptian" [checked]="isEgyption" (change)="isEgyption = !isEgyption">{{ 'traveler.alert' | translate }}</mat-checkbox>
+                <br><br>
+                <div *ngIf="f.invalid" ></div>
+                <button *ngIf="!isLoading" class='button-quote' mat-button color="primary" type="submit" [disabled]="f.invalid || isEgyption !== true || isNotMore85 !== true">{{ 'traveler.get_quote' | translate }}</button>
+                <div *ngIf="isLoading" fxLayoutAlign="center center">
+                    <mat-spinner [diameter]="40"></mat-spinner>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </form>
+
+
+
+</section>

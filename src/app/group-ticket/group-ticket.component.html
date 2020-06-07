@@ -1,0 +1,53 @@
+<div class=" img-background">
+    <main class="container-welcome" fxFlex fxLayout fxLayoutAlign="center center">
+        <section class="get_qoute">
+            <form #f="ngForm" (ngSubmit)="submitForm(f)">
+                <mat-card fxFlex="700px" fxFlex.xs="100%" class='overlay'>
+                    <mat-card-title fxLayoutAlign="flex-start">{{ 'group.title' | translate }}</mat-card-title>
+                    <mat-card-content>
+                        <mat-grid-list [cols]="3" rowHeight="75px" (window:resize)="onResize($event)" gutterSize="10px">
+                            <mat-grid-tile>
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label>{{'group.name' | translate}}</mat-label>
+                                    <input matInput type="text" name="name" ngModel #name="ngModel" required>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field appearance="outline" class='form-field'>
+                                    <mat-label> {{'results_info.email' | translate}}</mat-label>
+                                    <input matInput placeholder="Email" name="emailAddress" ngModel #emailAddress="ngModel" required email>
+                                    <mat-error *ngIf="emailAddress.hasError('required')">{{'results_info.email_alert'| translate}} <strong>{{'results_info.required'| translate}}</strong></mat-error>
+                                    <!-- <p *ngIf="mail === false" class="custom-error">Please enter a valid email address</p>                 -->
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <div class="form-group">
+                                    <select name="prefixNum" id="selectOptions" #prefixNum="ngModel" ngModel="011" required>
+                                            <option value="011" checked>011</option>  
+                                            <option value="010">010</option>
+                                            <option value="015">015</option>
+                                        
+                                        </select>
+                                    <mat-form-field appearance="outline" class='form-field'>
+                                        <mat-label id="phoneLabel"> {{'results_info.phone'| translate}}</mat-label>
+                                        <input matInput type="tel" id="phoneInput" name="phoneNumber" ngModel #phoneNumber="ngModel" maxlength="90" minlength="5" required>
+                                    </mat-form-field>
+                                </div>
+                            </mat-grid-tile>
+
+                            <div class="clearfix"></div>
+
+
+                        </mat-grid-list>
+
+                        <br>
+                        <button *ngIf="!isLoading" class='button-quote' mat-button color="primary" type="submit" [disabled]="f.invalid"> {{'results_info.phone'| translate}}</button>
+                        <div *ngIf="isLoading" fxLayoutAlign="center center">
+                            <mat-spinner [diameter]="40"></mat-spinner>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </form>
+        </section>
+    </main>
+</div>

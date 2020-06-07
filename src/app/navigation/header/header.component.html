@@ -1,0 +1,38 @@
+<section class="wrapper-header main-color">
+    <mat-toolbar class="  container">
+
+        <div>
+            <div class="phone-call" style="direction: ltr !important">
+                <span class="mdi mdi-phone icon-margin"></span>
+                <span>19243</span>
+            </div>
+        </div>
+
+        <div fxFlex fxLayout fxLayoutAlign="flex-end">
+            <ul fxLayout fxLayoutGap="10px" class="navigation-links" fxLayoutAlign="flex-start">
+                <span>
+                <h4 >
+                {{'navbar.follow' | translate}}
+                </h4>
+                </span>
+                <li><a class="link-target"><span class="mdi mdi-facebook"></span></a></li>
+                <li><a class="link-target"><span class="mdi mdi-twitter"></span></a></li>
+            </ul>
+            <div *ngIf="lang == 'en'; then thenBlock else elseBlock;"></div>
+            <ng-template #thenBlock>
+                <h5 style="margin: auto 10px; cursor: pointer;" (click)="changeLang('ar')">
+                    عربى
+                </h5>
+            </ng-template>
+            <ng-template #elseBlock>
+                <h5 style="margin: auto 10px;cursor: pointer;" (click)="changeLang('en')">
+                    English
+                </h5>
+            </ng-template>
+
+
+        </div>
+
+
+    </mat-toolbar>
+</section>

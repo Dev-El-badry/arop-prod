@@ -1,0 +1,61 @@
+<section class="medical-quote" style="margin-bottom: 30% !important;    margin: 50px auto;">
+    <form [formGroup]="form">
+
+
+        <mat-card fxLayout="column" fxFlex="700px" fxFlex.xs="100%" class='overlay'>
+            <mat-card-title fxLayoutAlign="flex-start">{{ 'group.title2' | translate }}</mat-card-title>
+            <mat-card-content class="make-scroll">
+                <div class="options">
+
+                    <mat-radio-group aria-label="Select an option" color="primary" (change)="getVal($event.value)" required>
+                        <mat-radio-button value="individual" checked>{{ 'traveler.indi' | translate }}</mat-radio-button>
+                        <mat-radio-button value="family">{{ 'traveler.family' | translate }}</mat-radio-button>
+                        <mat-radio-button value="smes">{{ 'medical.smes' | translate }}</mat-radio-button>
+                        <mat-radio-button value="corporate">{{ 'medical.corporate' | translate }}</mat-radio-button>
+                    </mat-radio-group>
+
+
+                </div>
+
+                <br><br>
+
+                <app-individual-medical *ngIf="type === 'individual'" [form]="form"></app-individual-medical>
+
+
+                <app-family-medical [form]="form" [datesCount]="dates" *ngIf="type === 'family'"></app-family-medical>
+
+
+                <app-smes-medical [form]="form" [numGroup]="groups" *ngIf="type === 'smes' || type === 'corporate'"></app-smes-medical>
+
+                
+
+            </mat-card-content>
+            <div class="add-person" *ngIf="type === 'family'">
+
+                <button type="button" mat-button (click)="onIncrement()">
+                    <mat-icon>add</mat-icon>
+                    
+                    {{ 'medical.add' | translate }}
+                </button>
+            </div>
+
+            <div class="add-person" *ngIf="type === 'smes' || type === 'corporate'">
+
+                <button type="button" mat-button (click)="onIncrementGroup()">
+                    <mat-icon>add</mat-icon>
+                    {{ 'medical.add_group' | translate }}
+                    
+                </button>
+            </div>
+
+
+
+
+            <br>
+            <button type="submit" style="margin-bottom: 10px;" class='button-quote' mat-button color="primary" type="submit" [disabled]="!form.valid" (click)="onRequest()">
+                {{ 'medical.get_quote' | translate }}</button>
+
+
+        </mat-card>
+    </form>
+</section>

@@ -1,0 +1,163 @@
+
+
+<mat-card *ngFor="let info of objMedicalInfo; let i = index">
+    <mat-card-title *ngIf="info.name != 'main'">{{info.name}}</mat-card-title>
+    <div *ngIf="i == 0 ;then thenBlock11 else elseBlock11"></div>
+    <ng-template #thenBlock11>
+        <table mat-table [dataSource]="info.plans" class="mat-elevation-z8">
+
+
+
+            <ng-container matColumnDef="cover">
+                <th mat-header-cell *matHeaderCellDef>
+
+                    {{"medical.cover" | translate}}
+
+                </th>
+
+                <td mat-cell *matCellDef="let item"> {{item.cover}} </td>
+                <td mat-footer-cell *matFooterCellDef>
+
+
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Golden">
+                <th mat-header-cell *matHeaderCellDef> {{"medical.golden" | translate}}
+
+                    <br> <button mat-raised-button (click)="goToNextStepper('medical-insurance', 'Golden')">{{'results_info.buy_now' | translate}}</button>
+                </th>
+                <td mat-cell *matCellDef="let item">
+                    <div *ngIf="chkIfTrueOrFalse(item.Golden) == true || chkIfTrueOrFalse(item.Golden) == false ; then thenBlock  else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <span class="mdi {{chkIfTrueOrFalse(item.Golden) == true ? 'mdi-check':'mdi-close'}}"></span>
+                    </ng-template>
+                    <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Golden)}}</ng-template>
+                </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="Platinum">
+                <th mat-header-cell *matHeaderCellDef> {{"medical.platinum" | translate}}
+                    <br> <button mat-raised-button (click)="goToNextStepper('medical-insurance', 'Platinum')">{{'results_info.buy_now' | translate}}</button>
+                </th>
+                <td mat-cell *matCellDef="let item">
+                    <div *ngIf="chkIfTrueOrFalse(item.Platinum) == true || chkIfTrueOrFalse(item.Platinum) == false ; then thenBlock  else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <span class="mdi {{chkIfTrueOrFalse(item.Platinum) == true ? 'mdi-check':'mdi-close'}}"></span>
+                    </ng-template>
+                    <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Platinum)}}</ng-template>
+                </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="Diamond">
+                <th mat-header-cell *matHeaderCellDef> {{"medical.diamond" | translate}}
+                    <br> <button mat-raised-button (click)="goToNextStepper('medical-insurance', 'Diamond')">{{'results_info.buy_now' | translate}}</button>
+                </th>
+                <td mat-cell *matCellDef="let item">
+
+                    <div *ngIf="chkIfTrueOrFalse(item.Diamond) == true || chkIfTrueOrFalse(item.Diamond) == false ; then thenBlock  else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <span class="mdi {{chkIfTrueOrFalse(item.Diamond) == true ? 'mdi-check':'mdi-close'}}"></span>
+                    </ng-template>
+                    <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Diamond)}}</ng-template>
+                </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="Diamond_Elite">
+                <th mat-header-cell *matHeaderCellDef> {{"medical.diamond_elite" | translate}}
+                    <br> <button mat-raised-button (click)="goToNextStepper('medical-insurance', 'Diamond Elite')">{{'results_info.buy_now' | translate}}</button>
+                </th>
+                <td mat-cell *matCellDef="let item">
+
+                    <div *ngIf="chkIfTrueOrFalse(item.Diamond_Elite) == true || chkIfTrueOrFalse(item.Diamond_Elite) == false ; then thenBlock  else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <span class="mdi {{chkIfTrueOrFalse(item.Diamond_Elite) == true ? 'mdi-check':'mdi-close'}}"></span>
+                    </ng-template>
+                    <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Diamond_Elite)}}</ng-template>
+                </td>
+
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    </ng-template>
+    <ng-template #elseBlock11>
+        <table mat-table [dataSource]="info.plans" class="mat-elevation-z8">
+
+
+
+            <ng-container matColumnDef="cover">
+
+
+                <td mat-cell *matCellDef="let item"> {{item.cover}} </td>
+                <td mat-footer-cell *matFooterCellDef>
+
+
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Golden">
+
+                <td mat-cell *matCellDef="let item">
+                    <div *ngIf="chkIfTrueOrFalse(item.Golden) == true || chkIfTrueOrFalse(item.Golden) == false ; then thenBlock  else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <span class="mdi {{chkIfTrueOrFalse(item.Golden) == true ? 'mdi-check':'mdi-close'}}"></span>
+                    </ng-template>
+                    <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Golden)}}</ng-template>
+                </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="Platinum">
+
+                <td mat-cell *matCellDef="let item">
+                    <div *ngIf="chkIfTrueOrFalse(item.Platinum) == true || chkIfTrueOrFalse(item.Platinum) == false ; then thenBlock  else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <span class="mdi {{chkIfTrueOrFalse(item.Platinum) == true ? 'mdi-check':'mdi-close'}}"></span>
+                    </ng-template>
+                    <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Platinum)}}</ng-template>
+                </td>
+
+            </ng-container>
+
+            <ng-container matColumnDef="Diamond">
+
+                <td mat-cell *matCellDef="let item">
+
+                    <div *ngIf="chkIfTrueOrFalse(item.Diamond) == true || chkIfTrueOrFalse(item.Diamond) == false ; then thenBlock  else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <span class="mdi {{chkIfTrueOrFalse(item.Diamond) == true ? 'mdi-check':'mdi-close'}}"></span>
+                    </ng-template>
+                    <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Diamond)}}</ng-template>
+                </td>
+
+            </ng-container>
+            <ng-container matColumnDef="Diamond_Elite">
+                <th mat-header-cell *matHeaderCellDef> {{"medical.diamond_elite" | translate}}
+                    <br> <button mat-raised-button (click)="goToNextStepper('medical-insurance', 'Diamond Elite')">{{'results_info.buy_now' | translate}}</button>
+                </th>
+                <td mat-cell *matCellDef="let item">
+
+                    <div *ngIf="chkIfTrueOrFalse(item.Diamond_Elite) == true || chkIfTrueOrFalse(item.Diamond_Elite) == false ; then thenBlock  else elseBlock"></div>
+                    <ng-template #thenBlock>
+                        <span class="mdi {{chkIfTrueOrFalse(item.Diamond_Elite) == true ? 'mdi-check':'mdi-close'}}"></span>
+                    </ng-template>
+                    <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Diamond_Elite)}}</ng-template>
+                </td>
+
+            </ng-container>
+
+
+
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    </ng-template>
+</mat-card>

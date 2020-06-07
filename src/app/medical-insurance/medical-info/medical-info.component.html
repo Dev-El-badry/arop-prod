@@ -1,0 +1,224 @@
+<div class="insurance-life" style="margin-bottom: 60px;">
+    <div class='wrapper-img'>
+        <img class="img-responsive" src="assets/images/medical-bk.jpg" style="    max-width: 100%;
+       
+        width: 100%;" height="250">
+    </div>
+
+    <div class='container' fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1%">
+
+        <div fxFlex="100%">
+            <mat-horizontal-stepper fxFlex.lt-sm="100%" linear labelPosition="bottom" #stepper="matHorizontalStepper">
+                <ng-template matStepperIcon="edit">
+                    <mat-icon>check</mat-icon>
+                </ng-template>
+
+                <mat-step label="{{ 'stepper.step1' | translate }}" [stepControl]="infoStatus" state="quote">
+                   
+                <h2 class=""><span class="big-text">{{"medical.plans_price" | translate}}</span> (<span class="small-text"> {{ 'medical.small_text' | translate }}</span>)</h2>
+
+
+                    <div *ngIf="type === 'smes'" style="overflow-x: scroll;">
+                        
+                        <app-smes-table [objMedicalInfo]="objMedicalInfo" [stepper]="stepper"></app-smes-table>
+                    </div>
+                    <div *ngIf="type != 'smes'" style="overflow-x: scroll;">
+                       
+                        <mat-card *ngFor="let info of objMedicalInfo; let i = index">
+                            <mat-card-title *ngIf="info.name != 'main'">{{info.name}}</mat-card-title>
+                            <div *ngIf="i == 0 ;then thenBlock1 else elseBlock1"></div>
+                            <ng-template #thenBlock1>
+                                <table *ngIf="!isLoading" mat-table [dataSource]="info.plans" class="mat-elevation-z8">
+
+
+
+                                    <ng-container matColumnDef="cover">
+                                        <th mat-header-cell *matHeaderCellDef>
+
+                                            {{"medical.cover" | translate}}
+
+                                        </th>
+
+                                        <td mat-cell *matCellDef="let item"> {{item.cover}} </td>
+                                        <td mat-footer-cell *matFooterCellDef>
+
+
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Elite">
+                                        <th mat-header-cell *matHeaderCellDef> {{"medical.elite" | translate}}
+
+
+                                            <br>
+                                            <button mat-raised-button (click)="goToNextStepper('medical-insurance', 'Elite', stepper)">{{'results_info.buy_now' | translate}}</button>
+                                        </th>
+                                        <td mat-cell *matCellDef="let item">
+                                            <div *ngIf="chkIfTrueOrFalse(item.Elite) == true || chkIfTrueOrFalse(item.Elite) == false ; then thenBlock  else elseBlock"></div>
+                                            <ng-template #thenBlock>
+                                                <span class="mdi {{chkIfTrueOrFalse(item.Elite) == true ? 'mdi-check':'mdi-close'}}"></span>
+                                            </ng-template>
+                                            <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Elite)}}</ng-template>
+                                        </td>
+
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Prestige">
+                                        <th mat-header-cell *matHeaderCellDef> {{"medical.prestige" | translate}}
+                                            <br> <button mat-raised-button (click)="goToNextStepper('medical-insurance', 'Prestige', stepper)">{{'results_info.buy_now' | translate}}</button>
+                                        </th>
+                                        <td mat-cell *matCellDef="let item">
+                                            <div *ngIf="chkIfTrueOrFalse(item.Prestige) == true || chkIfTrueOrFalse(item.Prestige) == false ; then thenBlock  else elseBlock"></div>
+                                            <ng-template #thenBlock>
+                                                <span class="mdi {{chkIfTrueOrFalse(item.Prestige) == true ? 'mdi-check':'mdi-close'}}"></span>
+                                            </ng-template>
+                                            <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Prestige)}}</ng-template>
+                                        </td>
+
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Blue">
+                                        <th mat-header-cell *matHeaderCellDef>{{"medical.blue" | translate}}
+                                            <br> <button mat-raised-button (click)="goToNextStepper('medical-insurance', 'Blue', stepper)">{{'results_info.buy_now' | translate}}</button>
+                                        </th>
+                                        <td mat-cell *matCellDef="let item">
+
+                                            <div *ngIf="chkIfTrueOrFalse(item.Blue) == true || chkIfTrueOrFalse(item.Blue) == false ; then thenBlock  else elseBlock"></div>
+                                            <ng-template #thenBlock>
+                                                <span class="mdi {{chkIfTrueOrFalse(item.Blue) == true ? 'mdi-check':'mdi-close'}}"></span>
+                                            </ng-template>
+                                            <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Blue)}}</ng-template>
+                                        </td>
+
+                                    </ng-container>
+
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                </table>
+                            </ng-template>
+                            <ng-template #elseBlock1>
+                                <table *ngIf="!isLoading" mat-table [dataSource]="info.plans" class="mat-elevation-z8">
+
+
+
+                                    <ng-container matColumnDef="cover">
+
+
+                                        <td mat-cell *matCellDef="let item"> {{item.cover}} </td>
+                                        <td mat-footer-cell *matFooterCellDef>
+
+
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Elite">
+
+                                        <td mat-cell *matCellDef="let item">
+                                            <div *ngIf="chkIfTrueOrFalse(item.Elite) == true || chkIfTrueOrFalse(item.Elite) == false ; then thenBlock  else elseBlock"></div>
+                                            <ng-template #thenBlock>
+                                                <span class="mdi {{chkIfTrueOrFalse(item.Elite) == true ? 'mdi-check':'mdi-close'}}"></span>
+                                            </ng-template>
+                                            <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Elite)}}</ng-template>
+                                        </td>
+
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Prestige">
+
+                                        <td mat-cell *matCellDef="let item">
+                                            <div *ngIf="chkIfTrueOrFalse(item.Prestige) == true || chkIfTrueOrFalse(item.Prestige) == false ; then thenBlock  else elseBlock"></div>
+                                            <ng-template #thenBlock>
+                                                <span class="mdi {{chkIfTrueOrFalse(item.Prestige) == true ? 'mdi-check':'mdi-close'}}"></span>
+                                            </ng-template>
+                                            <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Prestige)}}</ng-template>
+                                        </td>
+
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="Blue">
+
+                                        <td mat-cell *matCellDef="let item">
+
+                                            <div *ngIf="chkIfTrueOrFalse(item.Blue) == true || chkIfTrueOrFalse(item.Blue) == false ; then thenBlock  else elseBlock"></div>
+                                            <ng-template #thenBlock>
+                                                <span class="mdi {{chkIfTrueOrFalse(item.Blue) == true ? 'mdi-check':'mdi-close'}}"></span>
+                                            </ng-template>
+                                            <ng-template #elseBlock>{{chkIfTrueOrFalse(item.Blue)}}</ng-template>
+                                        </td>
+
+                                    </ng-container>
+
+
+
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                </table>
+                            </ng-template>
+                        </mat-card>
+                    </div>
+
+                    <mat-card style="margin-bottom: 20px;" *ngIf="type === 'smes'">
+                        <mat-card-title class="special-title">
+                            {{ 'notes.title' | translate }} <span style="color: red;">*</span>
+                        </mat-card-title>
+                    
+                        <ul class="notes">
+                            <li>{{ 'notes.note4' | translate }}</li>
+                            <li>{{ 'notes.note5' | translate }}</li>
+                            <li>{{ 'notes.note6' | translate }}</li>
+                    
+                        </ul>
+                    </mat-card>
+
+                    <mat-card style="margin-bottom: 20px;" *ngIf="type == 'individual'">
+                        <mat-card-title class="special-title">
+                            {{ 'notes.title' | translate }} <span style="color: red;">*</span>
+                        </mat-card-title>
+                    
+                        <ul class="notes">
+                            <li>{{ 'notes.note1' | translate }}</li>
+                            <li>{{ 'notes.note2' | translate }}</li>
+                            <li>{{ 'notes.note3' | translate }}</li>
+                    
+                        </ul>
+                    </mat-card>
+
+
+                </mat-step>
+                <mat-step label="{{ 'stepper.step2' | translate }}" [stepControl]="infoStatus" state="traveler">
+                    <app-get-ticket (clicked)="goForwardToPayment(stepper, $event)"></app-get-ticket>
+                </mat-step>
+
+                <mat-step label="{{ 'stepper.step4' | translate }}" state="protected">
+                    <mat-card>
+                        <mat-card-title fxLayoutAlign="center center">{{ 'personal.thankyou' | translate }}</mat-card-title>
+                        <mat-card-content>
+                            <div fxLayoutAlign="center center">
+                                <mat-icon style="font-size:50px;color:rgb(36, 182, 99);" fxLayoutAlign="center center">done</mat-icon>
+                            </div>
+                            <div style="font-size:18px;" fxLayoutAlign="center center">
+                                <p style="text-align:center;">{{ 'personal.title2' | translate }}</p>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-step>
+            </mat-horizontal-stepper>
+
+            <div *ngIf="isLoading" fxLayoutAlign="center center">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+        <!-- <div fxFlex="100%" *ngIf="type === 'smes'">
+
+            <div *ngIf="isLoading" fxLayoutAlign="center center">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div> -->
+
+
+
+
+    </div>
+</div>

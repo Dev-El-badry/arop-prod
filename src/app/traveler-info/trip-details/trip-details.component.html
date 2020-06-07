@@ -1,0 +1,108 @@
+<div class="traveler-detials">
+
+    <div class="left-section" *ngIf="lang == 'en'">
+        <h4 style="color:#0e253a;">{{'results_info.trip_title' | translate}}</h4>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-user.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'results_info.age' | translate}}</span><br>
+                <span class="details">
+          {{age}} years<br> </span>
+            </p>
+        </div>
+        <style>
+            .picker .left-section:before {
+                height: 304px;
+            }
+        </style>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-traveller.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'traveler.numOfTravelers' | translate}}</span><br>
+                <span class="details">{{numOfTraveler}}</span>
+            </p>
+        </div>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-depart.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'results_info.departure_date' | translate}}</span><br>
+                <span class="details">{{ when | date }}</span>
+            </p>
+        </div>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-location.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'traveler.zone' | translate}}</span><br>
+                <span class="details">{{ zone }}</span>
+            </p>
+        </div>
+        <div class="media pt-2">
+            <img src="assets/images/icons-trips/calender-icon.png" width="50">
+            <p class="media-body pl-2">
+                <span class="muted">{{'traveler.period' | translate}}</span><br>
+                <span class="details">{{ period }}</span>
+            </p>
+        </div>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-return.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'results_info.return_date' | translate}}</span><br>
+                <span class="details">{{ till | date }}</span>
+            </p>
+        </div>
+        <button (click)="onClick()" mat-raised-button>Edit your trip details</button>
+    </div>
+
+    <div class="right-section" *ngIf="lang == 'ar'">
+        <h4 style="color:#0e253a;">{{'results_info.trip_title' | translate}}</h4>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-user.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'results_info.age' | translate}}</span><br>
+                <span class="details">
+                {{age}} {{'results_info.year' | translate }} <br> </span>
+            </p>
+        </div>
+        <style>
+            .picker .left-section:before {
+                height: 304px;
+            }
+        </style>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-traveller.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'traveler.numOfTravelers' | translate}}</span><br>
+                <span class="details">{{numOfTraveler}}</span>
+            </p>
+        </div>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-depart.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'results_info.departure_date' | translate}}</span><br>
+                <span class="details">{{ when | date }}</span>
+            </p>
+        </div>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-location.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'traveler.zone' | translate}}</span><br>
+                <span class="details">{{ zone }}</span>
+            </p>
+        </div>
+        <div class="media pt-2">
+            <img src="assets/images/icons-trips/calender-icon.png" width="50">
+            <p class="media-body pl-2">
+                <span class="muted">{{'traveler.period' | translate}}</span><br>
+                <span class="details">{{ period }}</span>
+            </p>
+        </div>
+        <div class="media pt-2">
+            <img src="https://siassistance.com/assets/img/picker-return.png">
+            <p class="media-body pl-2">
+                <span class="muted">{{'results_info.return_date' | translate}}</span><br>
+                <span class="details">{{ till | date }}</span>
+            </p>
+        </div>
+        <button (click)="onClick()" mat-raised-button>{{ 'traveler.btn' | translate }}</button>
+    </div>
+</div>

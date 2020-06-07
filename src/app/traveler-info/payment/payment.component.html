@@ -1,0 +1,50 @@
+<mat-card fxFlex.xs="100%">
+
+    <mat-toolbar>
+        <span>{{'results_info.payment_title' | translate}}</span>
+        <span class="example-fill-remaining-space"></span>
+        <span>
+                    <img src="https://i76.imgup.net/accepted_c22e0.png">
+                </span>
+                
+    </mat-toolbar>
+    <div class="example-container" style="text-align: center;">
+        
+       
+        <!-- <button mat-raised-button (click)="onClick()" style="margin: 20px auto;">
+            <img style="width: 125px;
+            height: 80px;" src="assets/images/logo_qnp.png" alt="qnp bank" />
+        </button> -->
+        <!-- <form #f="ngForm" (ngSubmit)="submitPayment(f)">
+
+            <mat-grid-list cols="1" rowHeight="88px" gutterSize="10px">
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class='form-field'>
+                        <mat-label>{{'results_info.card_number' | translate}}</mat-label>
+                        <input type="number" matInput placeholder="Card Number" name="cardNumber" [(ngModel)]="paymentForm.cardNumber" #cardNumber="ngModel" required>
+                        <mat-icon matSuffix>credit_card</mat-icon>
+
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <mat-grid-list cols="2" rowHeight="88px" gutterSize="10px">
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class='form-field'>
+                        <mat-label>{{'results_info.exp' | translate}}</mat-label>
+                        <input type="text" matInput [matDatepicker]="picker" placeholder="MM / YY" name="expirationDate" [(ngModel)]="paymentForm.expirationDate" #expirationDate="ngModel" (click)="picker.open()" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker startView="multi-year" panelClass="example-month-picker"></mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline" class='form-field'>
+                        <mat-label>{{'results_info.cv_code' | translate}}</mat-label>
+                        <input type="number" matInput placeholder="CV Code" name="cvCode" [(ngModel)]="paymentForm.cvCode" #cvCode="ngModel" required>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+          
+            <button mat-raised-button class="button-quote" [disabled]="f.invalid"> {{'Pay' | uppercase}} </button>
+        </form> -->
+    </div>
+</mat-card>

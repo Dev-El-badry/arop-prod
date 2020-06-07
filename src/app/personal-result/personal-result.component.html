@@ -1,0 +1,36 @@
+<div class='wrapper-img'>
+    <img style="width:100%;height:200px;" class="img-responsive" src="assets/images/pa.png">
+</div>
+<div class='container' fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="1%">
+
+    <div fxFlex="75%">
+        <mat-horizontal-stepper fxFlex.lt-sm="100%" linear labelPosition="bottom" #stepper
+        (selectionChange)="setIndex($event)" (click)="triggerClick()">
+            <ng-template matStepperIcon="edit">
+                <mat-icon>check</mat-icon>
+            </ng-template>
+
+            <mat-step label="{{ 'stepper.step1' | translate }}" [completed]="infoStatus" state="quote">
+                <app-personal-quote fxFlex.lt-sm="100%"></app-personal-quote>
+                <!-- <app-quote fxFlex.lt-sm="100%"></app-quote> -->
+            </mat-step>
+            <mat-step label="{{ 'stepper.step2' | translate }}" [completed]="travelerInfoStatus" state="traveler">
+                <app-personal-info fxFlex.lt-sm="100%" (changeStatus)="goForwardToPayment(stepper, $event)"></app-personal-info>
+            </mat-step>
+            <!-- <mat-step label="{{ 'stepper.step3' | translate }}" [completed]="paymentStatus" state="pay">
+                <app-payment (paymentStatus)="goForwardToDone(stepper, $event)"></app-payment>
+            </mat-step> -->
+            <mat-step label="{{ 'stepper.step4' | translate }}" state="protected">
+                <app-thankyou></app-thankyou>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+
+
+    <div fxFlex="25%">
+        <app-price-card *ngIf="!isShow" (clicked)="goForward(stepper, $event)"></app-price-card>
+        <app-price-card-payment *ngIf="isShow" (clickedDone)="goForwardToDone(stepper, $event)"></app-price-card-payment>
+    </div>
+
+
+</div>

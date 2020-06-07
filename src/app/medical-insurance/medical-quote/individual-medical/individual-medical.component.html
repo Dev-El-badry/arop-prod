@@ -1,0 +1,8 @@
+<div class="half-width-field" [formGroup]="form">
+    <mat-form-field appearance="outline" class='form-field '>
+        <mat-label>{{ 'traveler.dob' | translate }}</mat-label>
+        <input type="text" matInput [matDatepicker]="agePicker" #inputAge placeholder="Date Of Birth" [max]="minDate" formControlName="date" required>
+        <mat-datepicker-toggle matSuffix [for]="agePicker"></mat-datepicker-toggle>
+        <mat-datepicker (closed)="inputAge.blur()" startView="multi-year" #agePicker></mat-datepicker>
+    </mat-form-field>
+</div>
